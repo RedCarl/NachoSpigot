@@ -1,74 +1,7 @@
-### This project is no longer maintained!
-There are many unfixed issues with nobody working on them due to a lack of maintainers.
-It is recommended that you look for another 1.8 fork or use newer versions with backwards-compatibility plugins.
-
-Currently, [WindSpigot](https://github.com/Wind-Development/WindSpigot) and [PandaSpigot](https://github.com/hpfxd/PandaSpigot) look the most promising. Please check them out if you are unable to use something like Purpur (1.18+).
-
-### Developers Notes / Farewells
-
-#### [HeathLoganCampbell / Sprock](https://github.com/HeathLoganCampbell)
-```
-~ Founder of NachoSpigot
-Thanks for all the love and support you have all put into NachoSpigot
-Discord: Sprock#0001
-Twitter: https://twitter.com/SprockPls
-Youtube: https://www.youtube.com/c/SprockPls
-```
-
-#### [Lucas / Sculas](https://github.com/Lucaskyy)
-```
-~ Maintainer
-It was fun while it lasted. Thank you for accompanying our journey!
-```
-
-#### [Elierrr / Elier](https://github.com/Elierrr)
-```
-~ Contributor
-Even as a late contributor, I was treated as someone who was always there, it was fun during these times and I have to thank everyone who helped, especially Sprock, Sculas, and Galaxis.
-```
-
-#### [Galaxis / crafter2345](https://github.com/crafter23456)
-```
-~ Contributor
-It was a beautyful time. I will miss NachoSpigot, but some parts live further. Love you Lew, Sprock, Lucas & Elier.
-```
-
-#### [wuangg / street](https://github.com/wuangg)
-```
-~ Contributor
-two years and it has been quite a ride, thank you to all maintainers and contributors and wish you all the best in your future projects.
-```
-
-#### [Tofpu](https://github.com/Tofpu)
-```
-~ Contributor & Appreciator 
-Even though I haven't contributed much into the project, I was treated very nicely when I did at the time. 
-I thank everyone who made this project as it is today, it was fun while it lasted!
-```
-
 ## NachoSpigot
 NachoSpigot offers a number of enhancements to performance as well as bug fixes and being able to perform well with a large number of players.
 
 While NachoSpigot hasn't been benchmarked properly yet, a server running NachoSpigot was successfully able to run a Minecraft event with 300 players and 20 TPS continuously.
-
-If you find any bugs, please [create an issue](../../issues/new) or contact us in the [Discord server](https://discord.gg/ewcYeERKJw)!
-
-## Download
-We do not provide stable release builds, since every commit should be stable to run.
-
-You can download the CI build for the latest commit [here](https://nightly.link/CobbleSword/NachoSpigot/workflows/build-nachospigot/master/NachoSpigot-server.zip).
-
-## API Download
-[JitPack](https://jitpack.io/#CobbleSword/NachoSpigot/master-SNAPSHOT)
-
-### Building / Compiling
-> To build, clone the repo, and run `mvn clean install` in the NachoSpigot directory.
-
-### Discord
-[Join the Discord server!](https://discord.gg/SBTEbSx)
-
-### Supporters / Contributors
-See: [Contributors Page](https://github.com/CobbleSword/NachoSpigot/graphs/contributors)
 
 ## Patches
 **All credit goes to the people that made these patches.**<br>
