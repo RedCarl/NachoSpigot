@@ -2875,8 +2875,8 @@ public abstract class World implements IBlockAccess {
         int k = MathHelper.floor((axisalignedbb.c - 2.0D) / 16.0D);
         int l = MathHelper.floor((axisalignedbb.f + 2.0D) / 16.0D);
 
-        for (int i1 = i; i1 <= j; ++i1) {
-            for (int j1 = k; j1 <= l; ++j1) {
+        for (int i1 = i; 0 <= j - i1; ++i1) {
+            for (int j1 = k; 0 <= l - j1; ++j1) {
                 if (this.isChunkLoaded(i1, j1, true)) {
                     if (this.getChunkAt(i1, j1).collectEntitiesByAmount(entity, axisalignedbb, entities, by, amount)) {
                         return entities;
