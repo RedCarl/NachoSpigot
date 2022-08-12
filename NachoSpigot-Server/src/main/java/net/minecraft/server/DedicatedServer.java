@@ -176,7 +176,6 @@ public class DedicatedServer extends MinecraftServer implements IMinecraftServer
                 this.setPort(this.propertyManager.getInt("server-port", 25565));
             }
             // Spigot start
-            NachoConfig.init((File) options.valueOf("nacho-settings")); // NachoSpigot - Load config before PlayerList
             KnockbackConfig.init((File) options.valueOf("knockback-settings"));
             this.setPlayerList(new DedicatedPlayerList(this)); // Nacho - deobfuscate setPlayerList
             org.spigotmc.SpigotConfig.init((File) options.valueOf("spigot-settings"));

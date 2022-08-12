@@ -18,7 +18,7 @@ import org.bukkit.event.world.ChunkUnloadEvent;
 public class ChunkProviderServer implements IChunkProvider {
 
     private static final Logger b = LogManager.getLogger();
-    public LongOpenHashSet unloadQueue = new LongOpenHashSet(); // CraftBukkit - LongHashSet // TacoSpigot - LongHashSet -> HashArraySet // Nacho - LongHashSet -> LongOpenHashSet
+    public LongSet unloadQueue = new LongArraySet(); // CraftBukkit - LongHashSet // TacoSpigot - LongHashSet -> HashArraySet
     public Chunk emptyChunk;
     public IChunkProvider chunkProvider;
     // FlamePaper - Make chunkLoader public

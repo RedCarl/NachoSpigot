@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import dev.cobblesword.nachospigot.Nacho;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
+import me.elier.nachospigot.config.NachoConfig;
 import net.minecraft.server.MinecraftServer;
 
 import org.apache.commons.lang3.JavaVersion;
@@ -234,6 +235,7 @@ public class Main {
                 // Spigot End
                 Nacho.LOGGER.info("Loading libraries, please wait...");
                 net.techcable.tacospigot.TacoSpigotConfig.init((File) options.valueOf("taco-settings")); // TacoSpigot - load config before we load libraries to allow access while loading
+                NachoConfig.init((File) options.valueOf("nacho-settings")); // NachoSpigot - Load config before libraries
                 MinecraftServer.main(options);
             } catch (Throwable t) {
                 t.printStackTrace();

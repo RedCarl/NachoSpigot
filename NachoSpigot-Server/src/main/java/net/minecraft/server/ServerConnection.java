@@ -204,4 +204,8 @@ public class ServerConnection {
     public MinecraftServer d() {
         return this.server;
     }
+
+    public static List<NetworkManager> getNetworkManagers(ServerConnection connection) {
+        return connection.connectedChannels;
+    }
 }

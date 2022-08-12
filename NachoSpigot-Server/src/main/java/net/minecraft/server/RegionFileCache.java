@@ -60,7 +60,10 @@ public class RegionFileCache {
     }
 
     public static DataInputStream c(File file, int i, int j) {
-        RegionFile regionfile = a(file, i, j);
+        RegionFile regionfile = a(file, i, j, false);
+        if (regionfile == null) {
+            return null;
+        }
 
         return regionfile.a(i & 31, j & 31);
     }

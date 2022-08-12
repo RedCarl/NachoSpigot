@@ -12,7 +12,7 @@ import java.util.Map.Entry;
 import java.util.concurrent.Callable;
 
 public class NBTTagCompound extends NBTBase {
-    private it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap<String, NBTBase> map = new it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap<>(8, 0.8f); // Paper - reduce memory footprint of NBTTagCompound
+    private Map<String, NBTBase> map = new it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap<>(8, 0.8f); // Paper - reduce memory footprint of NBTTagCompound
 
     public NBTTagCompound() {
     }
