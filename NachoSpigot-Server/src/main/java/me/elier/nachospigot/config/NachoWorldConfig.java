@@ -72,6 +72,7 @@ public class NachoWorldConfig {
     static void loadComments() {
         addComment("disable-sponge-absorption", "Disables sponge absorption");
         addComment("unload-chunks", "Enable unloading chunks");
+        addComment("save-chunks", "Enable saving chunks");
         addComment("block-operations", "Enable block operations");
         addComment("physics.disable-place", "Disables physics place");
         addComment("physics.disable-update", "Disables physics update");
@@ -96,6 +97,12 @@ public class NachoWorldConfig {
 
     private void doChunkUnload() {
         doChunkUnload = getBoolean("unload-chunks", true);
+    }
+
+    public boolean doChunkSave;
+
+    private void doChunkSave() {
+        doChunkSave = getBoolean("save-chunks", true);
     }
 
     public boolean doBlocksOperations;
