@@ -19,11 +19,11 @@
          These variables can be found at "META-INF/io.netty.versions.properties" of netty-all
          When updating netty update these variables too
         -->
-        <netty.version>4.1.75.Final</netty.version>
-        <netty.buildDate>2022-03-10 12\:26\:58 +01</netty.buildDate>
-        <netty.commitDate>2022-03-10 10\:19\:16 +0000</netty.commitDate>
-        <netty.shortCommitHash>5f1802ac65</netty.shortCommitHash> <!-- TODO: automatically get short hash from long -->
-        <netty.longCommitHash>5f1802ac65d63076616c5b3ee7a3d4151c7f3414</netty.longCommitHash>
+        <netty.version>4.1.79.Final</netty.version>
+        <netty.buildDate>2022-07-11 14\:23\:44 -0700</netty.buildDate>
+        <netty.commitDate>2022-07-11 20\:39\:44 +0000</netty.commitDate>
+        <netty.shortCommitHash>aa59245955</netty.shortCommitHash> <!-- TODO: automatically get short hash from long -->
+        <netty.longCommitHash>aa59245955f5121c4230d46c41a4b7f55e0c9ba7</netty.longCommitHash>
         <netty.repoStatus>clean</netty.repoStatus>
     </properties>
 
@@ -70,7 +70,7 @@
         <dependency>
             <groupId>it.unimi.dsi</groupId>
             <artifactId>fastutil</artifactId>
-            <version>8.5.6</version>
+            <version>8.5.8</version>
         </dependency>
         <dependency>
             <groupId>net.jafama</groupId>
@@ -101,7 +101,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.14</version>
+            <version>5.1.49</version>
             <type>jar</type>
             <scope>runtime</scope>
         </dependency>
@@ -109,30 +109,30 @@
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
-            <version>2.17.1</version>
+            <version>2.18.0</version>
             <scope>compile</scope>
         </dependency>
 	    <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
-            <version>2.17.1</version>
+            <version>2.18.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
-            <version>2.17.1</version>
+            <version>2.18.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-iostreams</artifactId>
-            <version>2.17.1</version>
+            <version>2.18.0</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.32</version>
+            <version>1.7.36</version>
             <scope>compile</scope>
         </dependency>
 
@@ -222,7 +222,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>2.5</version>
+                <version>2.6</version>
                 <configuration>
                     <finalName>NachoSpigot</finalName>
                     <forceCreation>true</forceCreation> <!-- Required to prevent shading the jar multiple times -->
