@@ -61,6 +61,7 @@ public class WorldServer extends World implements IAsyncTaskHandler {
         this.B();
         this.C();
         this.getWorldBorder().a(minecraftserver.aI());
+        savingDisabled = !nachoSpigotConfig.doChunkSave; // Nacho
     }
 
     public World b() {

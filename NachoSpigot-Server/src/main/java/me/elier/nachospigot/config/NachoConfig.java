@@ -143,6 +143,7 @@ public class NachoConfig {
         c.addComment("settings.commands.enable-help-command", "Toggles the /help command");
         c.addComment("settings.use-improved-hitreg", "Enables the usage of an improved hitreg based on lag compensation and small other details.");
         c.addComment("settings.disable-disconnect-spam", "Disables that players can be kicked because of disconnect.spam.");
+        c.addComment("settings.simplify-thin-block-collisions", "Simplifies the thin block collisions.");
         NachoWorldConfig.loadComments();
     }
 
@@ -408,5 +409,11 @@ public class NachoConfig {
 
     private static void disableDisconnectSpam() {
         disableDisconnectSpam = getBoolean("settings.disable-disconnect-spam", false);
+    }
+
+    public static boolean  simplifyThinBlockCollisions;
+
+    private static void simplifyThinBlockCollisions() {
+        simplifyThinBlockCollisions = getBoolean("settings.simplify-thin-block-collisions", true);
     }
 }
