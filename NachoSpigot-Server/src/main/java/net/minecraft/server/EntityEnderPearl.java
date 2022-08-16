@@ -44,25 +44,6 @@ public class EntityEnderPearl extends EntityProjectile {
         }
         // PaperSpigot end
 
-        // FlamePaper start - 0117-Pearl-through-blocks
-        BlockPosition blockPosition = movingobjectposition.a();
-        
-        if (blockPosition != null) {
-            IBlockData blockData = world.getType(blockPosition);
-            Block block = blockData.getBlock();
-            boolean collides = 
-                PaperConfig.pearlPassthroughTripwire && block == Blocks.TRIPWIRE
-                || PaperConfig.pearlPassthroughCobweb && block == Blocks.WEB
-                || PaperConfig.pearlPassthroughBed && block == Blocks.BED
-                || PaperConfig.pearlPassthroughFenceGate && (block == Blocks.FENCE_GATE || block == Blocks.SPRUCE_FENCE_GATE || block == Blocks.BIRCH_FENCE_GATE || block == Blocks.JUNGLE_FENCE_GATE || block == Blocks.DARK_OAK_FENCE_GATE || block == Blocks.ACACIA_FENCE_GATE) && ((Boolean) blockData.get(BlockFenceGate.OPEN)).booleanValue()
-                || PaperConfig.pearlPassthroughSlab && (block == Blocks.STONE_SLAB || block == Blocks.WOODEN_SLAB || block == Blocks.STONE_SLAB2);
-        
-            if (collides) {
-                return;
-            }
-        }
-        // FlamePaper end
-
         for (int i = 0; i < 32; ++i) {
             this.world.addParticle(EnumParticle.PORTAL, this.locX, this.locY + this.random.nextDouble() * 2.0D, this.locZ, this.random.nextGaussian(), 0.0D, this.random.nextGaussian(), Constants.EMPTY_ARRAY);
         }
