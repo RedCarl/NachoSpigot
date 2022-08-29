@@ -1079,4 +1079,6 @@ public interface Server extends PluginMessageRecipient {
     }
 
     Spigot spigot();
+
+    double[] getTPS();
 }

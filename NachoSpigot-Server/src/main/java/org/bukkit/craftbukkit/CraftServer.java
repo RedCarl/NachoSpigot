@@ -1935,4 +1935,9 @@ public final class CraftServer implements Server {
     {
         return spigot;
     }
+
+    @Override
+    public double[] getTPS() {
+        return spigot.getTPS();
+    }
 }

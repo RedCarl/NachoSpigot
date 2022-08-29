@@ -1225,4 +1225,8 @@ public final class Bukkit {
     {
         return server.spigot();
     }
+
+    public static double[] getTPS() {
+        return server.getTPS();
+    }
 }
