@@ -144,9 +144,9 @@ public class PaperConfig
         return config.getString( path, config.getString( path ) );
     }
 
-    public static boolean bungeeOnlineMode = true;
+    public static boolean bungeeOnlineMode;
     private static void bungeeOnlineMode() {
-        bungeeOnlineMode = getBoolean("settings.bungee-online-mode", true);
+        bungeeOnlineMode = getBoolean("settings.bungee-online-mode", false);
     }
 
     public static boolean isProxyOnlineMode() {
