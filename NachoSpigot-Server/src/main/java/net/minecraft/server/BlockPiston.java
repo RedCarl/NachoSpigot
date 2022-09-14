@@ -295,8 +295,9 @@ public class BlockPiston extends Block {
     }
 
     private boolean a(World world, BlockPosition blockposition, EnumDirection enumdirection, boolean flag) {
+        boolean enablePistonIllumination = world.nachoSpigotConfig.enablePistonIllumination;// Nacho
         if (!flag) {
-            world.setAir(blockposition.shift(enumdirection));
+            world.setTypeAndData(blockposition.shift(enumdirection), Blocks.AIR.getBlockData(), 3, enablePistonIllumination);// Nacho
         }
 
         PistonExtendsChecker pistonextendschecker = new PistonExtendsChecker(world, blockposition, enumdirection, flag);
@@ -361,7 +362,7 @@ public class BlockPiston extends Block {
                 Block block = world.getType(blockposition1).getBlock();
 
                 block.b(world, blockposition1, world.getType(blockposition1), 0);
-                world.setAir(blockposition1);
+                world.setTypeAndData(blockposition1, Blocks.AIR.getBlockData(), 3, enablePistonIllumination);// Nacho
                 --i;
                 ablock[i] = block;
             }
@@ -374,9 +375,9 @@ public class BlockPiston extends Block {
                 Block block1 = iblockdata.getBlock();
 
                 block1.toLegacyData(iblockdata);
-                world.setAir(blockposition1);
+                world.setTypeAndData(blockposition1, Blocks.AIR.getBlockData(), 3, enablePistonIllumination);// Nacho
                 blockposition1 = blockposition1.shift(enumdirection1);
-                world.setTypeAndData(blockposition1, Blocks.PISTON_EXTENSION.getBlockData().set(BlockPiston.FACING, enumdirection), 4);
+                world.setTypeAndData(blockposition1, Blocks.PISTON_EXTENSION.getBlockData().set(BlockPiston.FACING, enumdirection), 4, enablePistonIllumination);// Nacho
                 world.setTileEntity(blockposition1, BlockPistonMoving.a(iblockdata, enumdirection, flag, false));
                 --i;
                 ablock[i] = block1;
@@ -390,7 +391,7 @@ public class BlockPiston extends Block {
                 iblockdata = Blocks.PISTON_HEAD.getBlockData().set(BlockPistonExtension.FACING, enumdirection).set(BlockPistonExtension.TYPE, blockpistonextension_enumpistontype);
                 IBlockData iblockdata1 = Blocks.PISTON_EXTENSION.getBlockData().set(BlockPistonMoving.FACING, enumdirection).set(BlockPistonMoving.TYPE, this.sticky ? BlockPistonExtension.EnumPistonType.STICKY : BlockPistonExtension.EnumPistonType.DEFAULT);
 
-                world.setTypeAndData(blockposition2, iblockdata1, 4);
+                world.setTypeAndData(blockposition2, iblockdata1, 4, enablePistonIllumination);// Nacho
                 world.setTileEntity(blockposition2, BlockPistonMoving.a(iblockdata, enumdirection, true, false));
             }
 

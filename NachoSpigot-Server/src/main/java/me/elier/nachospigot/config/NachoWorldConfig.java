@@ -77,6 +77,7 @@ public class NachoWorldConfig {
         addComment("physics.disable-place", "Disables physics place");
         addComment("physics.disable-update", "Disables physics update");
         addComment("enable-lava-to-cobblestone", "Enables lava converting to cobblestone.");
+        addComment("enable-piston-illumination", "Enables piston affect illumination");
         addComment("entity.mob-ai", "Enables mob AI");
         addComment("entity.mob-sound", "Enables mob sound");
         addComment("entity.entity-activation", "Enables active ticks for entities");
@@ -123,6 +124,12 @@ public class NachoWorldConfig {
 
     private void setEnableLavaToCobblestone() {
         enableLavaToCobblestone = getBoolean("enable-lava-to-cobblestone", true);
+    }
+
+    public boolean enablePistonIllumination;
+
+    private void enablePistonIllumination() {
+        enablePistonIllumination = getBoolean("enable-piston-illumination", false);
     }
 
     public boolean enableMobAI;

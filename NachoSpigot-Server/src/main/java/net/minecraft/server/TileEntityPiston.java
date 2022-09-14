@@ -96,7 +96,7 @@ public class TileEntityPiston extends TileEntity implements IUpdatePlayerListBox
             this.world.t(this.position);
             this.y();
             if (this.world.getType(this.position).getBlock() == Blocks.PISTON_EXTENSION) {
-                this.world.setTypeAndData(this.position, this.a, 3);
+                this.world.setTypeAndData(this.position, this.a, 3, world.nachoSpigotConfig.enablePistonIllumination);// Nacho
                 this.world.d(this.position, this.a.getBlock());
             }
         }
@@ -111,7 +111,7 @@ public class TileEntityPiston extends TileEntity implements IUpdatePlayerListBox
             this.world.t(this.position);
             this.y();
             if (this.world.getType(this.position).getBlock() == Blocks.PISTON_EXTENSION) {
-                this.world.setTypeAndData(this.position, this.a, 3);
+                this.world.setTypeAndData(this.position, this.a, 3, world.nachoSpigotConfig.enablePistonIllumination);// Nacho
                 this.world.d(this.position, this.a.getBlock());
             }
 
