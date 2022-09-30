@@ -433,6 +433,10 @@ public abstract class MinecraftServer implements Runnable, ICommandListener, IAs
     private boolean hasStopped = false;
     private final Object stopLock = new Object();
     // CraftBukkit end
+    // Paper start
+    public boolean hasFullyShutdown;
+    public boolean hasStopped() { return hasStopped; }
+    // Paper end
 
     public void stop() throws ExceptionWorldConflict, InterruptedException { // CraftBukkit - added throws
         // CraftBukkit start - prevent double stopping on multiple threads

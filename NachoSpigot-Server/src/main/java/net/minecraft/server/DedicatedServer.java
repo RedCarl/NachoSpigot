@@ -390,6 +390,7 @@ public class DedicatedServer extends MinecraftServer implements IMinecraftServer
     }
 
     protected void z() {
+        hasFullyShutdown = true;// Paper
         System.exit(0);
     }
 
