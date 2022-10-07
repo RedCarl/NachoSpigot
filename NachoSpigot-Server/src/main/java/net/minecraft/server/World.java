@@ -2902,9 +2902,9 @@ public abstract class World implements IBlockAccess {
         int minChunkZ = MathHelper.floor((axisalignedbb.c - 2.0D) / 16.0D);
         int maxChunkZ = MathHelper.floor((axisalignedbb.f + 2.0D) / 16.0D);
 
-        for (int chunkX = minChunkX; chunkX <= maxChunkX; ++chunkX)
+        for (int chunkX = minChunkX; chunkX - maxChunkX <= 0; ++chunkX)
         {
-            for (int chunkZ = minChunkZ; chunkZ <= maxChunkZ; ++chunkZ)
+            for (int chunkZ = minChunkZ; chunkZ - maxChunkZ <= 0; ++chunkZ)
             {
                 Chunk chunk = this.getChunkIfLoaded(chunkX, chunkZ);
                 if (chunk != null)
