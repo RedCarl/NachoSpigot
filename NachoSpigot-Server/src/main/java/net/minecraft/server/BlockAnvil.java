@@ -25,7 +25,7 @@ public class BlockAnvil extends BlockFalling {
     public IBlockData getPlacedState(World world, BlockPosition blockposition, EnumDirection enumdirection, float f, float f1, float f2, int i, EntityLiving entityliving) {
         EnumDirection enumdirection1 = entityliving.getDirection().e();
 
-        return super.getPlacedState(world, blockposition, enumdirection, f, f1, f2, i, entityliving).set(BlockAnvil.FACING, enumdirection1).set(BlockAnvil.DAMAGE, Integer.valueOf(i >> 2));
+        return super.getPlacedState(world, blockposition, enumdirection, f, f1, f2, i, entityliving).set(BlockAnvil.FACING, enumdirection1).set(BlockAnvil.DAMAGE, (i >> 2) % 3);
     }
 
     public boolean interact(World world, BlockPosition blockposition, IBlockData iblockdata, EntityHuman entityhuman, EnumDirection enumdirection, float f, float f1, float f2) {
@@ -60,7 +60,7 @@ public class BlockAnvil extends BlockFalling {
     }
 
     public IBlockData fromLegacyData(int i) {
-        return this.getBlockData().set(BlockAnvil.FACING, EnumDirection.fromType2(i & 3)).set(BlockAnvil.DAMAGE, Integer.valueOf((i & 15) >> 2));
+        return this.getBlockData().set(BlockAnvil.FACING, EnumDirection.fromType2(i & 3)).set(BlockAnvil.DAMAGE, ((i & 15) >> 2) % 3);
     }
 
     public int toLegacyData(IBlockData iblockdata) {
