@@ -12,13 +12,14 @@ import java.util.Random;
 import org.bukkit.Server;
 import org.bukkit.craftbukkit.chunkio.ChunkIOExecutor;
 import org.bukkit.craftbukkit.util.LongHash;
+import org.bukkit.craftbukkit.util.LongHashSet;
 import org.bukkit.event.world.ChunkUnloadEvent;
 // CraftBukkit end
 
 public class ChunkProviderServer implements IChunkProvider {
 
     private static final Logger b = LogManager.getLogger();
-    public LongSet unloadQueue = new LongArraySet(); // CraftBukkit - LongHashSet // TacoSpigot - LongHashSet -> HashArraySet
+    public LongHashSet unloadQueue = new LongHashSet(); // CraftBukkit - LongHashSet
     public Chunk emptyChunk;
     public IChunkProvider chunkProvider;
     // FlamePaper - Make chunkLoader public
@@ -400,9 +401,9 @@ public class ChunkProviderServer implements IChunkProvider {
         // CraftBukkit start
         Server server = this.world.getServer();
         // TacoSpigot start - use iterator for unloadQueue
-        LongIterator iterator = unloadQueue.iterator();
+        Iterator<Long> iterator = unloadQueue.iterator();
         for (int i = 0; i < 100 && iterator.hasNext(); ++i) {
-            long chunkcoordinates = iterator.nextLong();
+            long chunkcoordinates = iterator.next();
             iterator.remove();
             // TacoSpigot end
             Chunk chunk = this.chunks.get(chunkcoordinates);
