@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+import com.google.common.collect.Lists;
 import net.minecraft.server.NBTBase;
 import net.minecraft.server.NBTTagCompound;
 import net.minecraft.server.NBTTagList;
@@ -493,10 +494,9 @@ class CraftMetaItem implements ItemMeta, Repairable {
             setRepairCost(repairCost);
         }
 
-        Set hideFlags = SerializableMeta.getObject(Set.class, map, HIDEFLAGS.BUKKIT, true);
+        List<String> hideFlags = SerializableMeta.getObject(List.class, map, HIDEFLAGS.BUKKIT, true);
         if (hideFlags != null) {
-            for (Object hideFlagObject : hideFlags) {
-                String hideFlagString = (String) hideFlagObject;
+            for (String hideFlagString : hideFlags) {
                 try {
                     ItemFlag hideFlatEnum = ItemFlag.valueOf(hideFlagString);
                     addItemFlags(hideFlatEnum);
@@ -873,7 +873,7 @@ class CraftMetaItem implements ItemMeta, Repairable {
         // Spigot end
 
 
-        Set<String> hideFlags = new HashSet<String>();
+        List<String> hideFlags = Lists.newArrayList();
         for (ItemFlag hideFlagEnum : getItemFlags()) {
             hideFlags.add(hideFlagEnum.name());
         }
