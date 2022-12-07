@@ -164,6 +164,18 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
 
     // Paper start
     @Override
+    public void sendActionBar(String message) {
+        if (getHandle().playerConnection == null || message == null || message.isEmpty()) return;
+        getHandle().playerConnection.sendPacket(new PacketPlayOutChat(new ChatComponentText(message), (byte) 2));
+    }
+
+    @Override
+    public void sendActionBar(char alternateChar, String message) {
+        if (message == null || message.isEmpty()) return;
+        sendActionBar(org.bukkit.ChatColor.translateAlternateColorCodes(alternateChar, message));
+    }
+
+    @Override
     public void sendMessage(BaseComponent component) {
         sendMessage(new BaseComponent[]{component});
     }
@@ -1601,6 +1613,24 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
             if ( getHandle().playerConnection == null ) return;
 
             PacketPlayOutChat packet = new PacketPlayOutChat();
+            packet.components = components;
+            getHandle().playerConnection.sendPacket(packet);
+        }
+
+        @Override
+        public void sendMessage(net.md_5.bungee.api.ChatMessageType position, BaseComponent component) {
+            sendMessage( position, new BaseComponent[] { component } );
+        }
+
+        @Override
+        public void sendMessage(net.md_5.bungee.api.ChatMessageType position, BaseComponent... components) {
+            if ( getHandle().playerConnection == null ) return;
+
+            PacketPlayOutChat packet = new PacketPlayOutChat(null, (byte) position.ordinal());
+            // Action bar doesn't render colours, replace colours with legacy section symbols
+            if (position == net.md_5.bungee.api.ChatMessageType.ACTION_BAR) {
+                components = new BaseComponent[]{new net.md_5.bungee.api.chat.TextComponent(BaseComponent.toLegacyText(components))};
+            }
             packet.components = components;
             getHandle().playerConnection.sendPacket(packet);
         }
