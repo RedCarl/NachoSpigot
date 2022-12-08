@@ -3,23 +3,26 @@ package net.minecraft.server;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
+
+import com.google.common.collect.Sets;
 import dev.cobblesword.nachospigot.events.ChunkPreLoadEvent;
 import it.unimi.dsi.fastutil.longs.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 // CraftBukkit start
 import java.util.Random;
+import java.util.Set;
+
 import org.bukkit.Server;
 import org.bukkit.craftbukkit.chunkio.ChunkIOExecutor;
 import org.bukkit.craftbukkit.util.LongHash;
-import org.bukkit.craftbukkit.util.LongHashSet;
 import org.bukkit.event.world.ChunkUnloadEvent;
 // CraftBukkit end
 
 public class ChunkProviderServer implements IChunkProvider {
 
     private static final Logger b = LogManager.getLogger();
-    public LongHashSet unloadQueue = new LongHashSet(); // CraftBukkit - LongHashSet
+    public Set<Long> unloadQueue = Sets.newConcurrentHashSet(); // CraftBukkit - LongHashSet
     public Chunk emptyChunk;
     public IChunkProvider chunkProvider;
     // FlamePaper - Make chunkLoader public
