@@ -410,10 +410,4 @@ public class NachoConfig {
     private static void disableDisconnectSpam() {
         disableDisconnectSpam = getBoolean("settings.disable-disconnect-spam", false);
     }
-
-    public static boolean  simplifyThinBlockCollisions;
-
-    private static void simplifyThinBlockCollisions() {
-        simplifyThinBlockCollisions = getBoolean("settings.simplify-thin-block-collisions", true);
-    }
 }

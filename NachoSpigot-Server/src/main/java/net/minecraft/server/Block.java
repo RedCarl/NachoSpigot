@@ -275,6 +275,15 @@ public class Block {
         this.maxZ = (double) f5;
     }
 
+    protected final void a(AxisAlignedBB axisAlignedBB) {
+        this.minX = axisAlignedBB.a;
+        this.minY = axisAlignedBB.b;
+        this.minZ = axisAlignedBB.c;
+        this.maxX = axisAlignedBB.d;
+        this.maxY = axisAlignedBB.e;
+        this.maxZ = axisAlignedBB.f;
+    }
+
     public boolean b(IBlockAccess iblockaccess, BlockPosition blockposition, EnumDirection enumdirection) {
         return iblockaccess.getType(blockposition).getBlock().getMaterial().isBuildable();
     }
