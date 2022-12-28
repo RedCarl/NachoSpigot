@@ -221,7 +221,6 @@ public class CraftWorld implements World {
             world.chunkProviderServer.saveChunkNOP(chunk);
         }
 
-        world.chunkProviderServer.unloadQueue.remove(LongHash.toLong(x, z)); // TacoSpigot - invoke LongHash directly
         world.chunkProviderServer.chunks.remove(LongHash.toLong(x, z));
 
         return true;
@@ -279,8 +278,7 @@ public class CraftWorld implements World {
             return world.chunkProviderServer.getChunkAt(x, z) != null;
         }
 
-        world.chunkProviderServer.unloadQueue.remove(LongHash.toLong(x, z)); // TacoSpigot - invoke LongHash directly
-        net.minecraft.server.Chunk chunk = world.chunkProviderServer.chunks.get(LongHash.toLong(x, z));
+        net.minecraft.server.Chunk chunk = world.chunkProviderServer.getLoadedChunkAt(x, z);
 
         if (chunk == null) {
             world.timings.syncChunkLoadTimer.startTiming(); // Spigot

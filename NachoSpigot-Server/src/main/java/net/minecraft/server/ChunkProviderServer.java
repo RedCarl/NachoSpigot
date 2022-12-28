@@ -11,18 +11,18 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 // CraftBukkit start
 import java.util.Random;
-import java.util.Set;
 
 import org.bukkit.Server;
 import org.bukkit.craftbukkit.chunkio.ChunkIOExecutor;
 import org.bukkit.craftbukkit.util.LongHash;
+import org.bukkit.craftbukkit.util.LongHashSet;
 import org.bukkit.event.world.ChunkUnloadEvent;
 // CraftBukkit end
 
 public class ChunkProviderServer implements IChunkProvider {
 
     private static final Logger b = LogManager.getLogger();
-    public Set<Long> unloadQueue = Sets.newConcurrentHashSet(); // CraftBukkit - LongHashSet
+    public LongHashSet unloadQueue = new LongHashSet(); // CraftBukkit - LongHashSet
     public Chunk emptyChunk;
     public IChunkProvider chunkProvider;
     // FlamePaper - Make chunkLoader public
@@ -72,6 +72,20 @@ public class ChunkProviderServer implements IChunkProvider {
                 }
             }
         }
+        // Nacho start
+        if (!this.world.worldProvider.e() || !this.world.shouldStayLoaded(i, j)) {
+            // CraftBukkit start
+
+            Chunk c = chunks.get(key);
+            if (c != null) {
+                this.unloadQueue.add(key);  // TacoSpigot - directly invoke LongHash
+                c.unloading = true;
+                c.mustSave = true;
+            }
+            // CraftBukkit end
+        }
+        // Nacho end
+        /*
         // PaperSpigot end
         if (this.world.worldProvider.e()) {
             if (!this.world.shouldStayLoaded(i, j)) { // Nacho - deobfuscate shouldStayLoaded
@@ -94,7 +108,7 @@ public class ChunkProviderServer implements IChunkProvider {
             }
             // CraftBukkit end
         }
-
+        */
     }
 
     public void b() {
@@ -120,14 +134,23 @@ public class ChunkProviderServer implements IChunkProvider {
         return chunks.get(LongHash.toLong(x, z));
     }
 
+    // Nacho start
+    public Chunk getLoadedChunkAt(int x, int z) {
+        long key = LongHash.toLong(x, z);
+        Chunk chunk = this.chunks.get(key);
+        if (chunk != null) {
+            chunk.unloading = false;
+        }
+        return chunk;
+    }
+    // Nacho end
+
     public Chunk getChunkAt(int i, int j) {
         return getChunkAt(i, j, null);
     }
 
     public Chunk getChunkAt(int i, int j, Runnable runnable) {
-        long key = LongHash.toLong(i, j); // IonSpigot - Only create key once
-        unloadQueue.remove(key); // TacoSpigot - directly invoke LongHash
-        Chunk chunk = chunks.get(key);
+        Chunk chunk = getLoadedChunkAt(i, j);// Nacho
         ChunkRegionLoader loader = null;
 
         if (this.chunkLoader instanceof ChunkRegionLoader) {
@@ -173,9 +196,7 @@ public class ChunkProviderServer implements IChunkProvider {
         return chunk;
     }
     public Chunk originalGetChunkAt(int i, int j) {
-        long key = LongHash.toLong(i, j); // IonSpigot - Only create key once
-        this.unloadQueue.remove(key); // TacoSpigot - directly invoke LongHash
-        Chunk chunk = (Chunk) this.chunks.get(key);
+        Chunk chunk = getLoadedChunkAt(i, j); // Nacho
         boolean newChunk = false;
         // CraftBukkit end
 
@@ -207,7 +228,7 @@ public class ChunkProviderServer implements IChunkProvider {
                         CrashReportSystemDetails crashreportsystemdetails = crashreport.a("Chunk to be generated");
 
                         crashreportsystemdetails.a("Location", (Object) String.format("%d,%d", new Object[] { Integer.valueOf(i), Integer.valueOf(j)}));
-                        crashreportsystemdetails.a("Position hash", (Object) key); // CraftBukkit - Use LongHash
+                        crashreportsystemdetails.a("Position hash", LongHash.toLong(i, j)); // CraftBukkit - Use LongHash
                         crashreportsystemdetails.a("Generator", (Object) this.chunkProvider.getName());
                         throw new ReportedException(crashreport);
                     }
@@ -215,7 +236,7 @@ public class ChunkProviderServer implements IChunkProvider {
                 newChunk = true; // CraftBukkit
             }
 
-            this.chunks.put(key, chunk);
+            this.chunks.put(chunk.chunkKey, chunk); // Nacho
             
             chunk.addEntities();
             
@@ -403,27 +424,24 @@ public class ChunkProviderServer implements IChunkProvider {
     public boolean unloadChunks() {
         // CraftBukkit start
         Server server = this.world.getServer();
-        // TacoSpigot start - use iterator for unloadQueue
-        Iterator<Long> iterator = unloadQueue.iterator();
-        for (int i = 0; i < 100 && iterator.hasNext(); ++i) {
-            long chunkcoordinates = iterator.next();
-            iterator.remove();
-            // TacoSpigot end
+        for (int i = 0; i < 100 && !this.unloadQueue.isEmpty(); ++i) {
+            long chunkcoordinates = unloadQueue.popFirst();
             Chunk chunk = this.chunks.get(chunkcoordinates);
-            if (chunk == null) continue;
+            if (chunk == null || !chunk.unloading) continue;// Nacho
+            chunk.unloading = false;
 
             ChunkUnloadEvent event = new ChunkUnloadEvent(chunk.bukkitChunk);
             server.getPluginManager().callEvent(event);
             if (!event.isCancelled()) {
 
-                if (chunk != null) {
+//                if (chunk.unloading) {
                     chunk.removeEntities();
                     if (!this.world.savingDisabled) {
                         this.saveChunk(chunk);
                         this.saveChunkNOP(chunk);
                     }
                     this.chunks.remove(chunkcoordinates); // CraftBukkit
-                }
+//                }
 
                 // this.unloadQueue.remove(olong);
 

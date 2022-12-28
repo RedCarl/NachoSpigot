@@ -17,6 +17,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.google.common.collect.Lists; // CraftBukkit
 import org.bukkit.Bukkit; // CraftBukkit
+import org.bukkit.craftbukkit.util.LongHash;
 
 public class Chunk {
 
@@ -164,10 +165,13 @@ public class Chunk {
         this.chunkCoords = new ChunkCoordIntPair(this.locX, this.locZ); // InsanePaper-269 - Cache Chunk Coordinations
         this.blockPos = new BlockPosition(this.locX << 4, 0, this.locZ << 4);
         this.cachedArea = new BlockPosition(this.locX * 16 + 8, 0, this.locZ * 16 + 8);
+        chunkKey = LongHash.toLong(i, j);// Nacho
     }
 
     public org.bukkit.Chunk bukkitChunk;
     public boolean mustSave;
+    public volatile boolean unloading;// Nacho
+    public final long chunkKey;// Nacho
     // CraftBukkit end
 
     public Chunk(World world, ChunkSnapshot chunksnapshot, int i, int j) {
