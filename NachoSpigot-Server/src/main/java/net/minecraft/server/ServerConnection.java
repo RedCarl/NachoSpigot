@@ -78,7 +78,6 @@ public class ServerConnection {
     public void a(InetAddress ip, int port) throws IOException {
         synchronized (this.listeningChannels) { // Nacho - deobfuscate listeningChannels
             Class<? extends ServerChannel> channel = null;
-            final int workerThreadCount = Runtime.getRuntime().availableProcessors();
 
             {
                 switch (eventGroupType) {
@@ -90,7 +89,7 @@ public class ServerConnection {
                     case EPOLL: {
                         if (Epoll.isAvailable()) {
                             boss = new EpollEventLoopGroup(0);
-                            worker = new EpollEventLoopGroup(workerThreadCount);
+                            worker = new EpollEventLoopGroup();
 
                             channel = EpollServerSocketChannel.class;
 
@@ -102,7 +101,7 @@ public class ServerConnection {
                     case KQUEUE: {
                         if (KQueue.isAvailable()) {
                             boss = new KQueueEventLoopGroup(0);
-                            worker = new KQueueEventLoopGroup(workerThreadCount);
+                            worker = new KQueueEventLoopGroup();
 
                             channel = KQueueServerSocketChannel.class;
 
@@ -113,7 +112,7 @@ public class ServerConnection {
                     }
                     case NIO: {
                         boss = new NioEventLoopGroup(0);
-                        worker = new NioEventLoopGroup(workerThreadCount);
+                        worker = new NioEventLoopGroup();
 
                         channel = NioServerSocketChannel.class;
 
