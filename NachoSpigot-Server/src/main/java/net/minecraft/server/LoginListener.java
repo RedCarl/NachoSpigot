@@ -45,7 +45,7 @@ public class LoginListener implements PacketLoginInListener, IUpdatePlayerListBo
     private final byte[] e = new byte[4];
     private final MinecraftServer server;
     public final NetworkManager networkManager;
-    private LoginListener.EnumProtocolState g;
+    public LoginListener.EnumProtocolState g;
     private int h;
     private GameProfile i;
     private final String j;

@@ -199,5 +199,10 @@ public class PaperConfig
                         "such as inventories, experience points, advancements and the like will not be saved when they log out.");
             }
     }
+
+    public static int maxJoinsPerTick;
+    private static void maxJoinsPerTick() {
+        maxJoinsPerTick = getInt("settings.max-joins-per-tick", 3);
+    }
     // Nacho end
 }

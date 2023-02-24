@@ -310,11 +310,23 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>> {
         this.sendPacketQueue();
     }
 
+    private static final int MAX_PER_TICK = com.destroystokyo.paper.PaperConfig.maxJoinsPerTick; // Paper
+    private static int joinAttemptsThisTick; // Paper
+    private static int currTick; // Paper
     public void tick() {
         this.sendPacketQueue();
-        if (this.m instanceof IUpdatePlayerListBox) {
-            ((IUpdatePlayerListBox) this.m).c();
+        // Paper start
+        if (currTick != MinecraftServer.currentTick) {
+            currTick = MinecraftServer.currentTick;
+            joinAttemptsThisTick = 0;
         }
+        if (this.m instanceof LoginListener && (((LoginListener) this.m).g != LoginListener.EnumProtocolState.READY_TO_ACCEPT || joinAttemptsThisTick++ < MAX_PER_TICK)) {
+            ((LoginListener) this.m).c();
+        }
+        if (this.m instanceof PlayerConnection) {
+            ((PlayerConnection) this.m).c();
+        }
+        // Paper end
 
         this.channel.flush();
     }
