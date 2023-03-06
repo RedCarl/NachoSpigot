@@ -3,15 +3,21 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>7</version>
+        <artifactId>Miars</artifactId>
+        <groupId>cn.mcarl</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
 
     <groupId>dev.cobblesword.nachospigot</groupId>
     <artifactId>parent</artifactId>
-    <version>dev-SNAPSHOT</version>
     <packaging>pom</packaging>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <name>NachoSpigot-Parent</name>
     <description>Parent project for all NachoSpigot modules.</description>
@@ -20,12 +26,4 @@
         <module>NachoSpigot-Server</module>
         <module>NachoSpigot-API</module>
     </modules>
-
-    <build>
-        <defaultGoal>clean install</defaultGoal>
-    </build>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 </project>
