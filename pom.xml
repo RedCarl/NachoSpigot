@@ -2,16 +2,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <artifactId>Miars</artifactId>
-        <groupId>cn.mcarl</groupId>
-        <version>1.0-SNAPSHOT</version>
-        <relativePath>../../pom.xml</relativePath>
-    </parent>
-
     <groupId>dev.cobblesword.nachospigot</groupId>
     <artifactId>parent</artifactId>
+    <version>dev-SNAPSHOT</version>
     <packaging>pom</packaging>
+
+    <modules>
+        <module>NachoSpigot-Server</module>
+        <module>NachoSpigot-API</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -21,9 +20,4 @@
 
     <name>NachoSpigot-Parent</name>
     <description>Parent project for all NachoSpigot modules.</description>
-
-    <modules>
-        <module>NachoSpigot-Server</module>
-        <module>NachoSpigot-API</module>
-    </modules>
 </project>

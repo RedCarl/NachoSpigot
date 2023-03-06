@@ -30,16 +30,21 @@ public class SimpleCommandMap implements CommandMap {
 
     private void setDefaultCommands() {
         // Nacho start - Add toggles for commands
-        if(server.versionCommandEnabled()) register("bukkit", new VersionCommand("version"));
-        if(server.reloadCommandEnabled()) register("bukkit", new ReloadCommand("reload"));
-        if(server.pluginsCommandEnabled()) register("bukkit", new PluginsCommand("plugins"));
+        if(server.versionCommandEnabled()) {
+            register("bukkit", new VersionCommand("version"));
+        }
+        if(server.pluginsCommandEnabled()) {
+            register("bukkit", new PluginsCommand("plugins"));
+        }
         // Nacho end
         register("bukkit", new co.aikar.timings.TimingsCommand("timings")); // Spigot
     }
 
     public void setFallbackCommands() {
         // Nacho start
-        if(server.helpCommandEnabled()) register("bukkit", new HelpCommand());
+        if(server.helpCommandEnabled()) {
+            //register("bukkit", new HelpCommand());
+        }
         // Nacho end
     }
 

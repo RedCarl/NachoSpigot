@@ -94,7 +94,7 @@ public final class VanillaCommandWrapper extends VanillaCommand {
                 if (i > -1) {
                     List<Entity> list = ((List<Entity>)PlayerSelector.getPlayers(icommandlistener, as[i], Entity.class));
                     String s2 = as[i];
-                    
+
                     icommandlistener.a(CommandObjectiveExecutor.EnumCommandResult.AFFECTED_ENTITIES, list.size());
                     Iterator<Entity> iterator = list.iterator();
 
